@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8201CC9921C0BDE500C2BB3B /* AddPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8201CC9821C0BDE500C2BB3B /* AddPlaceViewController.swift */; };
+		8201CC9B21C1C4B800C2BB3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8201CC9A21C1C4B800C2BB3B /* ProfileViewController.swift */; };
 		82568FCB21BF27E900296107 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82568FCA21BF27E900296107 /* AppDelegate.swift */; };
 		82568FD021BF27E900296107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82568FCE21BF27E900296107 /* Main.storyboard */; };
 		82568FD221BF27EA00296107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82568FD121BF27EA00296107 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		8201CC9821C0BDE500C2BB3B /* AddPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceViewController.swift; sourceTree = "<group>"; };
+		8201CC9A21C1C4B800C2BB3B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		82568FC721BF27E900296107 /* FreeParkingSpots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeParkingSpots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82568FCA21BF27E900296107 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82568FCF21BF27E900296107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				82568FDF21C002A500296107 /* MapViewController.swift */,
 				8201CC9821C0BDE500C2BB3B /* AddPlaceViewController.swift */,
+				8201CC9A21C1C4B800C2BB3B /* ProfileViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			files = (
 				8201CC9921C0BDE500C2BB3B /* AddPlaceViewController.swift in Sources */,
 				82568FCB21BF27E900296107 /* AppDelegate.swift in Sources */,
+				8201CC9B21C1C4B800C2BB3B /* ProfileViewController.swift in Sources */,
 				82568FE021C002A500296107 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

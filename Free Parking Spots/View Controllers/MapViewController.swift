@@ -23,21 +23,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         parkingLotMapView.delegate = self
         
+        checkLocationServices()
         setupUserTrackinButton()
         
-        checkLocationServices()
-        
-    }
-    
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
     func checkLocationServices() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
             checkLocationAuthorization()
+            parkingLotMapView.showsUserLocation = true
             locationManager.startUpdatingLocation()
         } else {
             
@@ -71,8 +68,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         userTrackingButton = MKUserTrackingButton(mapView: parkingLotMapView)
         userTrackingButton.translatesAutoresizingMaskIntoConstraints = false
         parkingLotMapView.addSubview(userTrackingButton)
-        userTrackingButton.leftAnchor.constraint(equalTo: parkingLotMapView.leftAnchor, constant: 20).isActive = true
-        userTrackingButton.bottomAnchor.constraint(equalTo: parkingLotMapView.bottomAnchor, constant: -20).isActive = true
+        userTrackingButton.leftAnchor.constraint(equalTo: parkingLotMapView.leftAnchor, constant: 15).isActive = true
+        userTrackingButton.bottomAnchor.constraint(equalTo: parkingLotMapView.bottomAnchor, constant: -15).isActive = true
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
@@ -94,6 +91,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     */
 }
+
 
 extension MapViewController: CLLocationManagerDelegate {
     
