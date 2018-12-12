@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		82568FCB21BF27E900296107 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82568FCA21BF27E900296107 /* AppDelegate.swift */; };
-		82568FCD21BF27E900296107 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82568FCC21BF27E900296107 /* ViewController.swift */; };
 		82568FD021BF27E900296107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82568FCE21BF27E900296107 /* Main.storyboard */; };
 		82568FD221BF27EA00296107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82568FD121BF27EA00296107 /* Assets.xcassets */; };
 		82568FD521BF27EA00296107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82568FD321BF27EA00296107 /* LaunchScreen.storyboard */; };
+		82568FE021C002A500296107 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82568FDF21C002A500296107 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		82568FC721BF27E900296107 /* Free Parking Spots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Free Parking Spots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82568FC721BF27E900296107 /* FreeParkingSpots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeParkingSpots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82568FCA21BF27E900296107 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		82568FCC21BF27E900296107 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		82568FCF21BF27E900296107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82568FD121BF27EA00296107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82568FD421BF27EA00296107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82568FD621BF27EA00296107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82568FDF21C002A500296107 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 		82568FC821BF27E900296107 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				82568FC721BF27E900296107 /* Free Parking Spots.app */,
+				82568FC721BF27E900296107 /* FreeParkingSpots.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,22 +54,46 @@
 		82568FC921BF27E900296107 /* Free Parking Spots */ = {
 			isa = PBXGroup;
 			children = (
-				82568FCA21BF27E900296107 /* AppDelegate.swift */,
-				82568FCC21BF27E900296107 /* ViewController.swift */,
-				82568FCE21BF27E900296107 /* Main.storyboard */,
-				82568FD121BF27EA00296107 /* Assets.xcassets */,
-				82568FD321BF27EA00296107 /* LaunchScreen.storyboard */,
-				82568FD621BF27EA00296107 /* Info.plist */,
+				82568FDD21BF27FC00296107 /* View Controllers */,
+				82568FDC21BF27F300296107 /* Storyboards */,
+				82568FDE21BF280400296107 /* Resources */,
 			);
 			path = "Free Parking Spots";
+			sourceTree = "<group>";
+		};
+		82568FDC21BF27F300296107 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				82568FCE21BF27E900296107 /* Main.storyboard */,
+				82568FD321BF27EA00296107 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		82568FDD21BF27FC00296107 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				82568FDF21C002A500296107 /* MapViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		82568FDE21BF280400296107 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				82568FCA21BF27E900296107 /* AppDelegate.swift */,
+				82568FD121BF27EA00296107 /* Assets.xcassets */,
+				82568FD621BF27EA00296107 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		82568FC621BF27E900296107 /* Free Parking Spots */ = {
+		82568FC621BF27E900296107 /* FreeParkingSpots */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82568FD921BF27EA00296107 /* Build configuration list for PBXNativeTarget "Free Parking Spots" */;
+			buildConfigurationList = 82568FD921BF27EA00296107 /* Build configuration list for PBXNativeTarget "FreeParkingSpots" */;
 			buildPhases = (
 				82568FC321BF27E900296107 /* Sources */,
 				82568FC421BF27E900296107 /* Frameworks */,
@@ -79,9 +103,9 @@
 			);
 			dependencies = (
 			);
-			name = "Free Parking Spots";
+			name = FreeParkingSpots;
 			productName = "Free Parking Spots";
-			productReference = 82568FC721BF27E900296107 /* Free Parking Spots.app */;
+			productReference = 82568FC721BF27E900296107 /* FreeParkingSpots.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +123,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 82568FC221BF27E900296107 /* Build configuration list for PBXProject "Free Parking Spots" */;
+			buildConfigurationList = 82568FC221BF27E900296107 /* Build configuration list for PBXProject "FreeParkingSpots" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				82568FC621BF27E900296107 /* Free Parking Spots */,
+				82568FC621BF27E900296107 /* FreeParkingSpots */,
 			);
 		};
 /* End PBXProject section */
@@ -135,8 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82568FCD21BF27E900296107 /* ViewController.swift in Sources */,
 				82568FCB21BF27E900296107 /* AppDelegate.swift in Sources */,
+				82568FE021C002A500296107 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +307,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Free Parking Spots/Info.plist";
+				DEVELOPMENT_TEAM = KK26JKU2YA;
+				INFOPLIST_FILE = "$(SRCROOT)/Free Parking Spots/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.Free-Parking-Spots";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.FreeParkingSpots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -300,12 +325,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Free Parking Spots/Info.plist";
+				DEVELOPMENT_TEAM = KK26JKU2YA;
+				INFOPLIST_FILE = "$(SRCROOT)/Free Parking Spots/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.Free-Parking-Spots";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.FreeParkingSpots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -315,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82568FC221BF27E900296107 /* Build configuration list for PBXProject "Free Parking Spots" */ = {
+		82568FC221BF27E900296107 /* Build configuration list for PBXProject "FreeParkingSpots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82568FD721BF27EA00296107 /* Debug */,
@@ -324,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		82568FD921BF27EA00296107 /* Build configuration list for PBXNativeTarget "Free Parking Spots" */ = {
+		82568FD921BF27EA00296107 /* Build configuration list for PBXNativeTarget "FreeParkingSpots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82568FDA21BF27EA00296107 /* Debug */,
