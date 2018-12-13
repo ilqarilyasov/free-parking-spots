@@ -8,17 +8,20 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var profileTableView: UITableView!
     private let settings = ["Your Places", "Settings"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        profileTableView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        profileTableView.reloadData()
+    }
 
     /*
     // MARK: - Navigation
