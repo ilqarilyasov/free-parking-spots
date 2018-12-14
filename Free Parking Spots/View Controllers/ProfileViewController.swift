@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var profileTableView: UITableView!
     private let settings = ["Your Places", "Settings"]
+    var parkingSpotController: ParkingSpotController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

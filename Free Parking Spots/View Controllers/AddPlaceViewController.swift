@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class AddPlaceViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddPlaceViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var placeImageView: UIImageView!
     @IBOutlet weak var addPhotoButton: UIButton!
@@ -20,12 +21,18 @@ class AddPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         didSet {
             if images.count > 1 {
                 imageCountLabel.isHidden = false
-                imageCountLabel.text = " 1/ \(images.count) "
+                imageCountLabel.layer.cornerRadius = 5
+                imageCountLabel.text = " \(images.count)/ \(images.count) "
+                addPhotoButton.setTitle("Add More Photo", for: .normal)
             } else {
                 imageCountLabel.isHidden = true
             }
         }
     }
+    
+    private var currentImage = UIImage()
+//    var parkingSpotController = ParkingSpotController()
+    let locationManager = CLLocationManager()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,20 +47,18 @@ class AddPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         
         nameTextField.delegate = self
         detailsTextView.delegate = self
-        detailsTextView.isUserInteractionEnabled = true
         
+        
+        detailsTextViewTapGesture()
+        imageSwipeGesture()
+        imageTapGesture()
+    }
+    
+    
+    private func detailsTextViewTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideUnhideKeyboard))
+        detailsTextView.isUserInteractionEnabled = true
         detailsTextView.addGestureRecognizer(tapGesture)
-        
-        let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
-        rightGesture.direction = .right
-        
-        let leftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
-        leftGesture.direction = .left
-        
-        
-        placeImageView.addGestureRecognizer(rightGesture)
-        placeImageView.addGestureRecognizer(leftGesture)
     }
     
     @objc func hideUnhideKeyboard() {
@@ -64,21 +69,60 @@ class AddPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
+    private func imageSwipeGesture() {
+        let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
+        rightGesture.direction = .right
+        
+        let leftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
+        leftGesture.direction = .left
+        
+        placeImageView.isUserInteractionEnabled = true
+        placeImageView.addGestureRecognizer(rightGesture)
+        placeImageView.addGestureRecognizer(leftGesture)
+    }
+    
     @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
         if gesture.state == .ended {
+            
+            guard let currentImage = placeImageView.image,
+                var index = images.index(of: currentImage) else { return }
+            
             switch gesture.direction {
             case .right:
-                placeImageView.image = images[1]
-                imageCountLabel.layer.cornerRadius = 5
-                imageCountLabel.text = " 2/ \(images.count) "
+                if index < (images.count - 1) {
+                    index += 1
+                    placeImageView.image = images[index]
+                    imageCountLabel.layer.cornerRadius = 5
+                    imageCountLabel.text = " \(index + 1)/ \(images.count) "
+                }
             case .left:
-                placeImageView.image = images[0]
-                imageCountLabel.layer.cornerRadius = 5
-                imageCountLabel.text = " 1/ \(images.count) "
+                if index > 0 {
+                    index -= 1
+                    placeImageView.image = images[index]
+                    imageCountLabel.layer.cornerRadius = 5
+                    imageCountLabel.text = " \(index + 1)/ \(images.count) "
+                }
             default:
                 break
             }
         }
+    }
+    
+    private func imageTapGesture() {
+        guard let image = placeImageView.image else { return }
+        currentImage = image
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnImage(sender:)))
+        placeImageView.isUserInteractionEnabled = true
+        placeImageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTapOnImage(sender: UITapGestureRecognizer) {
+        let fullScreen = FullScreenImageViewController()
+        fullScreen.image = currentImage
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let fullScreenVC = storyBoard.instantiateViewController(withIdentifier: "FullScreenImageViewController")
+        present(fullScreenVC, animated: true, completion: nil)
     }
     
     @IBAction func addPhotoButtonTapped(_ sender: Any) {
@@ -95,14 +139,37 @@ class AddPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         let pickedImage = info[.originalImage] as! UIImage
         images.append(pickedImage)
         placeImageView.image = pickedImage
-        addPhotoButton.setTitle("Add More Photo", for: .normal)
         
         picker.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func locationOnOffSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.startUpdatingLocation()
+            }
+        }
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         
+        guard let name = nameTextField.text,
+            let detail = detailsTextView.text,
+            let lat = locationManager.location?.coordinate.latitude,
+            let lon = locationManager.location?.coordinate.longitude else { return }
         
+        ParkingSpotController.shared.createParkingSpot(name: name, images: self.images, detail: detail, latitude: lat, longitude: lon)
+        
+        presentInformationalAlertController(title: "Completed", message: "New parking spot added to the map!", dismissActionCompletion: nil) {
+            self.nameTextField.text = ""
+            self.detailsTextView.text = ""
+            self.placeImageView.image = UIImage(named: "placeholder")
+            let newImages = [UIImage]()
+            self.images = newImages
+            self.addPhotoButton.setTitle("Add Photo", for: .normal)
+        }
         
     }
 }
@@ -137,4 +204,15 @@ extension AddPlaceViewController: UITextViewDelegate, UITextFieldDelegate {
         view.frame.origin.y = 0
     }
     
+}
+
+extension AddPlaceViewController {
+    func presentInformationalAlertController(title: String?, message: String?, dismissActionCompletion: ((UIAlertAction) -> Void)? = nil, completion: (() -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: dismissActionCompletion)
+        
+        alertController.addAction(dismissAction)
+        
+        present(alertController, animated: true, completion: completion)
+    }
 }

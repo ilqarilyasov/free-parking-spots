@@ -14,4 +14,11 @@ struct User {
     let email: String
     let password: String
     let parkingSpots: [ParkingSpot]
+    
+    init(name: String = "Tim", email: String = "tim@apple.com", password: String = "password", parkingSpots: [ParkingSpot] = []) {
+        self.name = name
+        self.email = email
+        self.password = password
+        self.parkingSpots = parkingSpots
+    }
 }

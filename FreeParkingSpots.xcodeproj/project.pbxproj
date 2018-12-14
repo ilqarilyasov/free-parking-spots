@@ -11,6 +11,9 @@
 		8201CC9B21C1C4B800C2BB3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8201CC9A21C1C4B800C2BB3B /* ProfileViewController.swift */; };
 		8201CC9D21C1D24700C2BB3B /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8201CC9C21C1D24700C2BB3B /* ParkingSpot.swift */; };
 		8201CCA021C1D2C700C2BB3B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8201CC9F21C1D2C700C2BB3B /* User.swift */; };
+		8201CCA221C30A5800C2BB3B /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8201CCA121C30A5800C2BB3B /* FullScreenImageViewController.swift */; };
+		82200B0821C35B62004ABC2B /* ParkingSpotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82200B0721C35B62004ABC2B /* ParkingSpotController.swift */; };
+		82200B0B21C35B92004ABC2B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82200B0A21C35B92004ABC2B /* MainTabBarController.swift */; };
 		82568FCB21BF27E900296107 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82568FCA21BF27E900296107 /* AppDelegate.swift */; };
 		82568FD021BF27E900296107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82568FCE21BF27E900296107 /* Main.storyboard */; };
 		82568FD221BF27EA00296107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82568FD121BF27EA00296107 /* Assets.xcassets */; };
@@ -23,6 +26,9 @@
 		8201CC9A21C1C4B800C2BB3B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8201CC9C21C1D24700C2BB3B /* ParkingSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpot.swift; sourceTree = "<group>"; };
 		8201CC9F21C1D2C700C2BB3B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8201CCA121C30A5800C2BB3B /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
+		82200B0721C35B62004ABC2B /* ParkingSpotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpotController.swift; sourceTree = "<group>"; };
+		82200B0A21C35B92004ABC2B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		82568FC721BF27E900296107 /* FreeParkingSpots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeParkingSpots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82568FCA21BF27E900296107 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82568FCF21BF27E900296107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,6 +58,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		82200B0921C35B66004ABC2B /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				82200B0721C35B62004ABC2B /* ParkingSpotController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
 		82568FBE21BF27E900296107 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				8201CC9E21C1D24D00C2BB3B /* Models */,
+				82200B0921C35B66004ABC2B /* Model Controllers */,
 				82568FDD21BF27FC00296107 /* View Controllers */,
 				82568FDC21BF27F300296107 /* Storyboards */,
 				82568FDE21BF280400296107 /* Resources */,
@@ -91,9 +106,11 @@
 		82568FDD21BF27FC00296107 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				82200B0A21C35B92004ABC2B /* MainTabBarController.swift */,
 				82568FDF21C002A500296107 /* MapViewController.swift */,
 				8201CC9821C0BDE500C2BB3B /* AddPlaceViewController.swift */,
 				8201CC9A21C1C4B800C2BB3B /* ProfileViewController.swift */,
+				8201CCA121C30A5800C2BB3B /* FullScreenImageViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -181,8 +198,11 @@
 			files = (
 				8201CC9921C0BDE500C2BB3B /* AddPlaceViewController.swift in Sources */,
 				82568FCB21BF27E900296107 /* AppDelegate.swift in Sources */,
+				82200B0B21C35B92004ABC2B /* MainTabBarController.swift in Sources */,
 				8201CCA021C1D2C700C2BB3B /* User.swift in Sources */,
 				8201CC9B21C1C4B800C2BB3B /* ProfileViewController.swift in Sources */,
+				82200B0821C35B62004ABC2B /* ParkingSpotController.swift in Sources */,
+				8201CCA221C30A5800C2BB3B /* FullScreenImageViewController.swift in Sources */,
 				8201CC9D21C1D24700C2BB3B /* ParkingSpot.swift in Sources */,
 				82568FE021C002A500296107 /* MapViewController.swift in Sources */,
 			);

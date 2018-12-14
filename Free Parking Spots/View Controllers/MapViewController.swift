@@ -10,22 +10,64 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var parkingLotMapView: MKMapView!
     
-    private let locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
     private var userTrackingButton: MKUserTrackingButton!
     private let regionInMeters = 15000.0
+//    var parkingSpotController = ParkingSpotController()
+    
+    var parkingSpots = [ParkingSpot]() {
+        didSet {
+            let oldPS = Set(oldValue)
+            let newPS = Set(parkingSpots)
+
+            let addedPS = Array(newPS.subtracting(oldPS))
+            let removedPS = Array(oldPS.subtracting(newPS))
+
+            DispatchQueue.main.async {
+                self.parkingLotMapView.removeAnnotations(removedPS)
+                self.parkingLotMapView.addAnnotations(addedPS)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         parkingLotMapView.delegate = self
+        parkingLotMapView.showsUserLocation = true
         
         checkLocationServices()
         setupUserTrackinButton()
         
+        parkingLotMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "ParkingSpotAnnotationView")
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handlePress(gesture:)))
+        longPressRecognizer.delegate = self
+        longPressRecognizer.minimumPressDuration = 1.5
+        parkingLotMapView.isUserInteractionEnabled = true
+        parkingLotMapView.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    @objc func handlePress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            let coordinatePoint = gesture.location(in: parkingLotMapView)
+            let coordinate = parkingLotMapView.convert(coordinatePoint, toCoordinateFrom: parkingLotMapView)
+            parkingLotMapView.setCenter(coordinate, animated: true)
+            
+            let annotation = ParkingSpot(coordinate: coordinate)
+            parkingLotMapView.addAnnotation(annotation)
+            
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        parkingSpots = ParkingSpotController.shared.parkingSpots
+//        parkingLotMapView.addAnnotations(ParkingSpotController.shared.parkingSpots)
     }
     
     func checkLocationServices() {
@@ -77,7 +119,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        return MKAnnotationView()
+        
+        guard let parkingSpot = annotation as? ParkingSpot else { return nil }
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "ParkingSpotAnnotationView", for: parkingSpot) as! MKMarkerAnnotationView
+        
+        annotationView.glyphTintColor = .white
+        annotationView.glyphImage = UIImage(named: "parkingSign-32")
+        annotationView.canShowCallout = true
+        
+        return annotationView
     }
 
 
